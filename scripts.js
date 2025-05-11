@@ -1,7 +1,7 @@
 const scenes = {
   start: {
     title: "Зачарованний світ", //сцена 1 
-    text: "Перед тобою три шляхи. Ти — нічний ельф Варлорд у пошуках істини.",
+    text: "Перед тобою два шляхи. Ти — нічний ельф Варлорд у пошуках істини.",
     image: "https://corwyn.wdfiles.com/local--files/tharnia-road/ROAD-48.jpg",
     options: [
       { text: "Піти в ліс", next: "forest" }, //кнопка1
@@ -146,7 +146,7 @@ const scenes = {
     image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1YnaxnSKTknM2G5MGhn_M-teWWFkD2bE56I90xOeaZIchY7JvmmTqmHsFe2t5KsyoUfw&usqp=CAU",
     options: [
       { text: "Піти в храм", next: "templeEntrance" },
-      { text: "Сумніватись у Вахо", next: "vahoVanish" }
+      { text: "Відмовити Вахо та піти у село", next: "VillageRoad" }
     ]
   },
   templeEntrance: {
