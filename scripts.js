@@ -344,7 +344,7 @@ const scenes = {
     text: "Тебе затягнуло у водоворот доки ти плив!",
     image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsMGjS4KtKw8WDiuT7jKSXvqez7YgkgpBQGg&s',
     options: [
-      {text: 'Відбитись від істоти та попливсти далі', next: 'start'},
+      {text: 'Воскреснути та почати зпочатку', action: () => { player.health += 100; } },
     ]
   },
   YOUDIEDFROMFISHLOLKEK: {
