@@ -111,8 +111,7 @@ const scenes = {
     text: "Кабан веде тебе до скарбу.",
     image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHj5ApyGgv_ULlcZAJtNvP-O6N8aYqZelXXQ&s",
     options: [
-      { text: "Взяти золото", next: "takeGold" },
-      { text: "Залишити", next: "leaveGold", action: () => { player.gold +=100; } },
+      { text: "Взяти золото", next: "takeGold", action: () => { player.gold +=100; } },
     ]
   },
   takeGold: {
@@ -153,7 +152,7 @@ const scenes = {
   templeEntrance: {
     title: "Храм",
     text: "У храмі тобі пропонують випити зілля",
-    image: "https://sdmntprwestus2.oaiusercontent.com/files/00000000-c5c0-61f8-9f81-5834c654242f/raw?se=2025-05-11T18%3A32%3A52Z&sp=r&sv=2024-08-04&sr=b&scid=00000000-0000-0000-0000-000000000000&skoid=b32d65cd-c8f1-46fb-90df-c208671889d4&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-05-11T11%3A32%3A42Z&ske=2025-05-12T11%3A32%3A42Z&sks=b&skv=2024-08-04&sig=fJjIyQAk0a%2ByaIcrwIcjwykLjyY8zdkCv1SpQmtdWrU%3D",
+    image: "https://www.viktoriastable.com/wp-content/uploads/2017/10/purple-moscow-mule-2.jpg",
     options: [
       { text: "Випити", next: "PoisonousPurpleDrank" },
       { text: "Відмовитись та піти до села", next: "VillageRoad" }
@@ -168,7 +167,7 @@ const scenes = {
     ]
   },
   YOUDIEDFROMLEAN: {
-    title: "Ти програв!",
+    title: "Ти переміг!",
     text: "Ти помер не як герой, але помер уві сні",
     image: "https://t3.ftcdn.net/jpg/09/89/35/52/360_F_989355236_JTFzAVJKCHhtBt6ITfymae2c25iXcBAH.jpg",
     options: [
@@ -180,17 +179,17 @@ const scenes = {
     text: "Вахо накладає на тебе древнє закляття. Твоя сила зростає.",
     image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ59YXOMI3G2CEvGBoDXx0nZjcBlZIVOfIhxd8zo-bdFDUknkKJ0KeR3aqoSpl5jmQuo6E&usqp=CAU",
     options: [
-      { text: "Випробувати силу", next: "training" },
+      { text: "Випробувати силу", next: "trainingDEAD" },
       { text: "Подякувати і піти", next: "VillageRoad" },
   
     ]
   },
   trainingDEAD: {
-    title: "Шлях Сили",
-    text: "Вахо накладає на тебе древнє закляття. Твоя сила зростає.",
-    image: "https://static.wikia.nocookie.net/forgottenrealms/images/5/5a/Fireball_CLB.jpg/revision/latest?cb=20220331112255",
+    title: "Випробування Сили",
+    text: "Ти помер від дуже сильного закляття!",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsDnStnTbwja5vKbwPSzX10uEYD8UciVRWmg&s",
     options: [
-      { text: "Випробувати силу", next: "YOUDIEDfromtraining", action: () => { player.health += 100; } },
+      { text: "Воскреснути (почати зпочатку)", next: "start", action: () => { player.health += 100; } },
     ]
   },
   vahoPeace: {
@@ -240,7 +239,15 @@ const scenes = {
     text: "Ти використав свій амулет, але він був зламаний!",
     image: "https://i.etsystatic.com/10574679/r/il/fb3a3b/6192546785/il_fullxfull.6192546785_n0sc.jpg",
     options: [,
-      { text: "Використати амулет", next: "AMULETUSE" },
+      { text: "Використати амулет", next: "YOUDIEDFROMAMULET", action: () => { player.health -= 100; } },
+    ]
+  },
+  YOUDIEDEFROMAMULET: {
+    title: "Магічний амулет",
+    text: "Ти використав свій амулет, але він був зламаний!",
+    image: "https://i.etsystatic.com/10574679/r/il/fb3a3b/6192546785/il_fullxfull.6192546785_n0sc.jpg",
+    options: [,
+      { text: "Ти помер від свого ж амулета!", next: "start", action: () => { player.health += 100; } },
     ]
   },
   forestAgain: {
@@ -257,7 +264,7 @@ const scenes = {
     text: "Ти знаходиш коло з каменів. У центрі — сяйво.",
     image: "https://images.stockcake.com/public/3/6/a/36a5d7d6-acc3-4e5c-8d15-4aff6e17b004_large/mystical-stone-circle-stockcake.jpg",
     options: [
-      { text: "Увійти в коло", next: "teleportRuins" },
+      { text: "Увійти в коло", next: "islandRuins" },
       { text: "Залишити", next: "lakeEdge" },
     ]
   },
@@ -310,9 +317,17 @@ const scenes = {
     text: "Руїни здавна покинуті. Але з темряви хтось спостерігає.",
     image: "https://img.atlasobscura.com/Iw6mWoqD7jFKUJSh1txOBrwwgX9m_ZbIwQxIUURvLJ8/rs:fill:600:400:1/g:ce/q:81/sm:1/scp:1/ar:1/aHR0cHM6Ly9hdGxh/cy1kZXYuczMuYW1h/em9uYXdzLmNvbS91/cGxvYWRzL3BsYWNl/X2ltYWdlcy9hZTEy/ZTFjOS1lNjE2LTQz/NjYtOWY2Zi1mNTM4/MDg3ZTA2MzlhNGU5/MjVkMmQxOWE1ZThk/ZjhfSU1HXzIwMTkx/MjI1XzEzNTkxMy5q/cGc.jpg",
     options: [
-      { text: "Дослідити далі", next: "holepit" },
+      { text: "Дослідити далі", next: "holepit" , action: () => { player.health -= 100; } },
       { text: "Повернутись у човен", next: "lakeEdge1" },
 
+    ]
+  },
+  holepit: {
+    title: "Руїни острова",
+    text: "Руїни здавна покинуті. Але з темряви хтось спостерігає.",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRaR-fUpQeEQQ8yKrOqq7GR8LeYEW5cM_2Qg&s",
+    options: [
+      { text: "Воскреснути (почати зпочатку)", next: "start", action: () => { player.health += 100; } },
     ]
   },
   lakeEdge1: {
@@ -320,8 +335,16 @@ const scenes = {
     text: "Щось чи хтось у воді хоче тебе з'їсти!",
     image: 'https://w0.peakpx.com/wallpaper/492/123/HD-wallpaper-fishing-trip-water-boat-fish-monster.jpg',
     options: [
-      {text: 'Відбитись від істоти та попливсти далі', next: 'waterpit'},
+      {text: 'Відбитись від істоти та попливсти далі', next: 'waterpit', action: () => { player.health -= 100; } },
       {text: 'Не відбиватись від істоти', next: 'YOUDIEDFROMFISHLOLKEK', action: () => { player.health -= 100; } },
+    ]
+  },
+  waterpit: {
+    title: "Водоворот",
+    text: "Тебе затягнуло у водоворот доки ти плив!",
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsMGjS4KtKw8WDiuT7jKSXvqez7YgkgpBQGg&s',
+    options: [
+      {text: 'Відбитись від істоти та попливсти далі', next: 'start'},
     ]
   },
   YOUDIEDFROMFISHLOLKEK: {
